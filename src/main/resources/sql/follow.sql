@@ -1,7 +1,7 @@
-drop table tbl_follows;
-create table tbl_follows
+drop table tbl_follow;
+create table tbl_follow
 (
-    id int auto_increment primary key,
+    id bigint unsigned auto_increment primary key,
     follower_id int not null unique,
     following_id int not null unique,
     created_datetime datetime default now() not null

@@ -8,6 +8,6 @@ create table tbl_message
     notification_datetime datetime default current_timestamp(),
     message_content text not null,
     message_room_id bigint unsigned not null,
-    constraint fk_message_room foreign key (message_room_id)
-        references tbl_message_room (id)
+    constraint fk_message_messeage_room foreign key (message_room_id)
+    references tbl_message_room(id)
 );

@@ -11,5 +11,5 @@ create table tbl_education
     end_date date not null,
     member_id bigint unsigned not null,
     constraint fk_member_education_member foreign key(member_id)
-        references tbl_member(id)
-)
+    references tbl_member(id)
+);
