@@ -1,5 +1,5 @@
 /* 전역 색상 변수 임포트 */
-@import url('../common/global-colors.css');
+@import url('/static/css/common/global-colors.css');
 
 /* 공통 부분 */
 * {
@@ -175,7 +175,8 @@ svg {
 .passwordconfirm-wrap,
 .password-wrap,
 .phone-wrap,
-.email-wrap{
+.email-wrap,
+.name-wrap{
     align-items: flex-start;
     flex-direction: column;
     width: 100%;
@@ -184,7 +185,8 @@ svg {
 .passwordconfirm-inner,
 .password-inner,
 .phone-inner,
-.email-inner {
+.email-inner,
+.name-inner{
     flex-direction: row;
     border-color: #ffffff14;
     align-items: center;
@@ -200,7 +202,8 @@ svg {
 .passwordconfirm-word,
 .password-word,
 .phone-word,
-.email-word {
+.email-word,
+.name-word{
     cursor: text;
     flex: 1 0 0;
     width: 100%;
@@ -210,7 +213,8 @@ svg {
 .passwordconfirmwrite,
 .passwordwrite,
 .phonewrite,
-.emailwrite {
+.emailwrite
+.namewrite{
     cursor: text;
     background-color: #00000000;
     height: 20px;

@@ -1,4 +1,5 @@
 drop table tbl_member;
+DELETE FROM tbl_member where id=1;
 create table tbl_member
 (
     id bigint unsigned auto_increment primary key,
@@ -6,7 +7,7 @@ create table tbl_member
     member_password varchar(255) not null,
     member_name varchar(255) not null,
     member_phone_number varchar(255) unique not null,
-    member_status enum ('active','inactive') default 'inactive',
+    member_status enum ('active','inactive') default 'active',
     created_datetime datetime default current_timestamp(),
     updated_datetime datetime default current_timestamp()
 );
