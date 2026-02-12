@@ -6,6 +6,7 @@ import com.app.candm.domain.MemberVO;
 import com.app.candm.dto.member.MemberDTO;
 import com.app.candm.repository.member.MemberDAO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Transactional(rollbackFor = Exception.class)
+@Slf4j
 public class MemberService {
     private final MemberDAO memberDAO;
 

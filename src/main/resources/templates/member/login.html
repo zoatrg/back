@@ -31,12 +31,12 @@
                     <div class="login-wrap">
                         <div class="login-group">
                             <div class="login-group-width">
-                                <form action="/member/join" method="post" name="loginForm" class="login-form">
+                                <form action="/member/login" method="post" name="loginForm" class="login-form">
                                     <div class="login-div">
                                         <div class="email-wrap">
                                             <div class="email-inner">
                                                 <div class="email-word">
-                                                    <input placeholder="이메일을 입력해주세요" name="emailInput" class="emailwrite" type="email">
+                                                    <input placeholder="이메일을 입력해주세요" name="memberEmail" class="emailwrite" type="email" autocomplete="off">
                                                 </div>
                                             </div>
                                         </div>
@@ -44,13 +44,13 @@
                                         <div class="password-wrap">
                                             <div class="password-inner">
                                                 <div class="password-word">
-                                                    <input placeholder="패스워드를 입력해주세요." name="passwordForm" class="passwordwrite" type="password">
+                                                    <input placeholder="패스워드를 입력해주세요." name="memberPassword" class="passwordwrite" type="password">
                                                 </div>
                                             </div>
                                         </div>
                                         <!--  -->
                                         <div class="goingwrap">
-                                            <button class="goingbutton" type="submit" > <!-- 활성화시 disabled를 빼주세요. -->
+                                            <button class="goingbutton" type="button" > <!-- 활성화시 disabled를 빼주세요. -->
                                                 <span class="goingword">로그인하기</span> <!-- 이메일이 있을 시: 로그인하기 -->
                                             </button>
                                         </div>
@@ -103,7 +103,6 @@
             </div>
         </div>
     </div>
-</div>
 <script>
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');

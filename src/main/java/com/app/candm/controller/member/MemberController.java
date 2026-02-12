@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @Controller
 @RequestMapping("/member/**")
 @RequiredArgsConstructor
+@Slf4j
 public class MemberController {
     private final MemberService memberService;
 //    session 서버에 저장
@@ -40,32 +42,15 @@ public class MemberController {
 
 //    로그인 화면으로 이동
     @GetMapping("login")
-    public String goToLoginForm(
-            @CookieValue(name = "remember",required = false) boolean remember,
-            HttpServletRequest request,
-            Model model)
+    public String goToLoginForm()
     {
-        model.addAttribute("remember", remember);
         return "member/login";
     }
 
 //    로그인 검사
     @PostMapping("login")
-    public RedirectView login(MemberDTO memberDTO, Model model, HttpServletResponse response){
+    public RedirectView login(MemberDTO memberDTO){
         session.setAttribute("member",memberService.login(memberDTO));
-        Cookie rememberCookie = new Cookie("remember", String.valueOf(memberDTO.isRemember()));
-
-        rememberCookie.setPath("/");
-
-        if(memberDTO.isRemember()){
-            rememberCookie.setMaxAge(60 * 60 * 24 * 30); // 30일 유지
-        }
-        else {
-            rememberCookie.setMaxAge(0);
-        }
-
-        response.addCookie(rememberCookie);
-
         return new RedirectView("/main/main");
     }
 }

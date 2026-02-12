@@ -44,7 +44,7 @@ public class MemberMapperTests {
         memberDTO.setMemberPassword("1234");
 
         Optional<MemberVO> foundMember = memberMapper.selectMemberForLogin(memberDTO);
-        log.info("{}.............",foundMember);
+        log.info("{}.............",foundMember.isEmpty());
     }
 
     }
