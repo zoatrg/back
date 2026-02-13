@@ -1,7 +1,7 @@
 package com.app.candm.domain;
 import com.app.candm.audit.Period;
 
-import com.app.candm.common.enumeration.Status;
+import com.app.candm.common.enumeration.MessageStatus;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -11,10 +11,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class MessageVO extends Period {
     private Long id;
-    private String senderId;
-    private String receiverId;
-    private Status messageStatus;
+    private Long senderId;
+    private Long receiverId;
+    private MessageStatus messageStatus;
     private String notificationDatetime;
     private String messageContent;
-    private String messageRoomId;
+    private Long messageRoomId;
 }
