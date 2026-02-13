@@ -7,7 +7,13 @@
         values (#{memberEmail}, #{memberPassword},#{memberName},#{memberPhoneNumber})
     </insert>
 
-<!--    카카오로그인-->
+<!--    카카오회원가입-->
+    <insert id="kakaoInsert" useGeneratedKeys="true" keyProperty="id">
+        insert into tbl_member(member_email, member_name, member_phone_number)
+        values (#{memberEmail}, #{memberName}, #{memberPhoneNumber})
+    </insert>
+
+<!--    카카오회원인지 일반회원인지-->
     <insert id="insertOauth">
         insert into tbl_oauth(id, provider)
         values(#{id}, #{provider})

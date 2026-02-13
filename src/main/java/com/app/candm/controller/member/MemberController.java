@@ -2,14 +2,10 @@ package com.app.candm.controller.member;
 
 import com.app.candm.dto.member.MemberDTO;
 import com.app.candm.service.member.MemberService;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -51,6 +47,18 @@ public class MemberController {
     @PostMapping("login")
     public RedirectView login(MemberDTO memberDTO){
         session.setAttribute("member",memberService.login(memberDTO));
+        return new RedirectView("/main/main");
+    }
+
+//    카카오 추가정보 입력으로 읻오
+    @GetMapping("kakao-join")
+    public String GotoKakaoJoinForm(){
+        return "/member/kakao-join";
+    }
+
+    @PostMapping("kakao-join")
+    public RedirectView kakaoJoin(MemberDTO memberDTO){
+        memberService.kakaoJoin(memberDTO);
         return new RedirectView("/main/main");
     }
 }

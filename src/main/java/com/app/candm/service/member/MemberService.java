@@ -32,6 +32,14 @@ public class MemberService {
         memberDAO.saveOauth(memberDTO.toOauthVO());
     }
 
+//    카카오 회원가입
+    public void kakaoJoin(MemberDTO memberDTO){
+        memberDTO.setProvider(Provider.KAKAO);
+        memberDAO.saveKakao(memberDTO);
+        log.info("{},,,,,,,,,,,,,,,memberservice",memberDTO);
+        memberDAO.saveOauth(memberDTO.toOauthVO());
+    }
+
 //    화면 실제 로그인
     public MemberDTO login(MemberDTO memberDTO){
         Optional<MemberVO> foundmember = memberDAO.findForLogin(memberDTO);

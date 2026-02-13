@@ -15,6 +15,10 @@ public class MemberDAO {
     private final MemberMapper memberMapper;
 //    회원가입
     public void save(MemberDTO memberDTO){memberMapper.insert(memberDTO);}
+//    카카오 회원가입
+    public void saveKakao(MemberDTO memberDTO){
+        memberMapper.kakaoInsert(memberDTO);
+    }
 //    oauth
     public void saveOauth(OauthVO oauthVO){memberMapper.insertOauth(oauthVO);}
 //    이메일검사
