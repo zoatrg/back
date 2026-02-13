@@ -11,3 +11,5 @@ create table tbl_message
     constraint fk_message_messeage_room foreign key (message_room_id)
     references tbl_message_room(id)
 );
+
+select * from tbl_message;
