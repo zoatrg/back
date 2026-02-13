@@ -139,7 +139,6 @@ public class KakaoService {
                 kakaoInfo.setMemberEmail(memberEmail);
                 kakaoInfo.setProfileImageUrl(profileImageUrl);
 
-                log.info("{},,,,,,,,,,,",kakaoInfo);
 //                카카오에서 받은 이메일을 우리 DB에서 검사해본다.
                 Optional<MemberDTO> foundMember = memberDAO.findByMemberEmail(kakaoInfo.getMemberEmail());
 

@@ -5,3 +5,5 @@ create table tbl_oauth
     constraint fk_oauth_member foreign key (id)
         references tbl_member (id)
 );
+
+select * from tbl_oauth;

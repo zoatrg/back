@@ -14,6 +14,9 @@ public interface MemberMapper {
     public Optional<MemberDTO> selectByMemberEmail(String memberEmail);
 //    회원가입
     public void insert(MemberDTO memberDTO);
+
+//    카카오 회원가입
+    public void kakaoInsert(MemberDTO memberDTO);
 //    oauth
     public void insertOauth(OauthVO oauthVO);
 //    로그인
