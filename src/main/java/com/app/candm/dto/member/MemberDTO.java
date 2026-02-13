@@ -21,6 +21,8 @@ public class MemberDTO {
     private String createdDatetime;
     private String updatedDatetime;
     private Provider provider;
+    private boolean remember;
+    private String profileImageUrl;
 
     public MemberVO toMemberVO(){
         return MemberVO.builder()

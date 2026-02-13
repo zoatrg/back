@@ -1,5 +1,5 @@
 /* 전역 색상 변수 임포트 */
-@import url('/static/css/common/global-colors.css');
+@import url('/css/common/global-colors.css');
 
 /* 공통 부분 */
 * {
@@ -160,6 +160,10 @@ svg {
 }
 
 .login-group-width{
+    width: 100%;
+}
+
+.login-form {
     width: 100%;
 }
 

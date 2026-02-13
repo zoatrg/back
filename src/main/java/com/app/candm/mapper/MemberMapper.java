@@ -1,5 +1,6 @@
 package com.app.candm.mapper;
 
+import com.app.candm.domain.MemberVO;
 import com.app.candm.domain.OauthVO;
 import com.app.candm.dto.member.MemberDTO;
 import org.apache.ibatis.annotations.Mapper;
@@ -13,8 +14,12 @@ public interface MemberMapper {
     public Optional<MemberDTO> selectByMemberEmail(String memberEmail);
 //    회원가입
     public void insert(MemberDTO memberDTO);
+
+//    카카오 회원가입
+    public void kakaoInsert(MemberDTO memberDTO);
 //    oauth
     public void insertOauth(OauthVO oauthVO);
-
+//    로그인
+    public Optional<MemberVO> selectMemberForLogin(MemberDTO memberDTO);
 
 }
