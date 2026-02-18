@@ -17,24 +17,24 @@ public class TeamController {
     private final TeamRegistrationService teamRegistrationService;
 
     // 팀 등록 페이지로 이동
-    @GetMapping("register")
+    @GetMapping("team-regist")
     public String goToRegisterForm(TeamDTO teamDTO) {
-        return "team/register";
+        return "team/team-regist";
     }
 
     // 팀 등록 실행
-    @PostMapping("register")
+    @PostMapping("team-regist")
     public RedirectView register(TeamDTO teamDTO) {
         log.info("Registering team: {}", teamDTO);
 
         // 서비스 내 중복검사 로직이 포함된 메서드 호출
         teamRegistrationService.registerTeamCheck(teamDTO);
 
-        return new RedirectView("/team/team-detail"); // 팀상세 페이지로 이동
+        return new RedirectView("/team/team-regist"); // 팀등록 페이지로 이동
     }
 
     // 팀명 중복 검사
-    @GetMapping("check-title")
+    @GetMapping("team-regist")
     @ResponseBody
     public ResponseEntity<Boolean> checkTitle(@RequestParam String teamTitle) {
         // 존재하지 않으면 true (사용 가능)
@@ -42,7 +42,7 @@ public class TeamController {
     }
 
     // 팀 URL 중복 검사
-    @GetMapping("check-url")
+    @GetMapping("team-regist")
     @ResponseBody
     public ResponseEntity<Boolean> checkUrl(@RequestParam String teamUrl) {
         // 존재하지 않으면 true (사용 가능)
