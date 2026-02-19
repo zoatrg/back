@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.candm.mapper.MessageRoomMapper">
+
+    <!-- 방 생성 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tbl_message_room (created_member_id, invited_member_id)
+        VALUES (#{createdMemberId}, #{invitedMemberId})
+    </insert>
+
+    <!-- 내 채팅방 목록 -->
+    <select id="selectAllByMemberId" resultType="MessageRoomDTO">
+        SELECT
+            r.id,
+            r.created_member_id,
+            r.invited_member_id
+        FROM tbl_message_room r
+        WHERE r.created_member_id = #{memberId}
+           OR r.invited_member_id = #{memberId}
+    </select>
+</mapper>

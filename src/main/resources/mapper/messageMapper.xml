@@ -2,7 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.candm.mapper.MessageMapper">
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        insert into tbl_message (message_content, message_room_id)
-        values (#{messageContent}, #{messageRoomId})
+        insert into tbl_message (sender_id, receiver_id, message_content, message_room_id)
+        values (#{senderId}, #{receiverId}, #{messageContent}, #{messageRoomId})
     </insert>
+
+    <!-- 목록: 특정 방의 메시지 전부 -->
+    <select id="selectAllByMessageRoomId" resultType="MessageDTO">
+        SELECT
+            m.id,
+            m.sender_id,
+            m.receiver_id,
+            m.message_status,
+            m.notification_datetime,
+            m.message_content,
+            m.message_room_id
+        FROM tbl_message m
+        WHERE m.message_room_id = #{messageRoomId}
+        ORDER BY m.notification_datetime
+    </select>
+
+    <!-- 상세: 메시지 하나 -->
+    <select id="selectById" resultType="MessageDTO">
+        SELECT
+            m.id,
+            m.sender_id,
+            m.receiver_id,
+            m.message_status,
+            m.notification_datetime,
+            m.message_content,
+            m.message_room_id
+        FROM tbl_message m
+        WHERE m.id = #{id}
+    </select>
 </mapper>

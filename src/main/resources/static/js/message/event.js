@@ -52,9 +52,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleSendMessage = () => {
         const text = messageInput.value.trim();
         if (text) {
+            // 화면에 말풍선 표시
             appendMessage(text, true, false);
             messageInput.value = '';
             sendBtn.classList.remove('active');
+
+            // 백엔드로 전송 → DB 저장
+            fetch('/message/write', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    messageContent: text,
+                    messageRoomId: 1,
+                    senderId: 1,
+                    receiverId: 2
+                })
+            })
+            .then(response => response.text())
+            .then(result => console.log('DB 저장 완료:', result));
         }
     };
 
