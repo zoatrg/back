@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class MyPageMapperTests {
 
     @Autowired
-    private MypageMapper mypageMapper;
+    private MyPageMapper mypageMapper;
 
     @Test
     public void testInsert(){
@@ -24,9 +24,9 @@ public class MyPageMapperTests {
         memberCareerDTO.setStartDate("2026-02");
         memberCareerDTO.setEndDate("2026-04");
         memberCareerDTO.setIntroDetailed("안녕하십니까");
-        memberCareerDTO.setMemberId(2L);
+        memberCareerDTO.setMemberId(4L);
 
-        log.info(memberCareerDTO.toString());
+        log.info("{},,,,,,,,,,,,,",memberCareerDTO);
         mypageMapper.careerInsert(memberCareerDTO);
     }
 

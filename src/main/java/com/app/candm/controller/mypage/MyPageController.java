@@ -22,10 +22,11 @@ public class MyPageController {
         if(memberDTO == null){
             return "redirect:/member/login";
         }
-        log.info(memberDTO.toString());
         model.addAttribute("member", memberDTO);
         model.addAttribute("isOwner", true);
         return "mypage/mypage";
+
+
 
     }
 }

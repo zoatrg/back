@@ -14,3 +14,5 @@ create table tbl_member_career(
     constraint fk_member_career_member foreign key(member_id)
     references tbl_member(id)
 );
+
+select * from tbl_member_career;
