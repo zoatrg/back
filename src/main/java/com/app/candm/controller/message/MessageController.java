@@ -1,19 +1,32 @@
 package com.app.candm.controller.message;
 
-
+import com.app.candm.dto.message.MessageDTO;
+import com.app.candm.service.message.MessageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/message/**")
 @RequiredArgsConstructor
 @Slf4j
 public class MessageController {
+
+    private final MessageService messageService;
+
+    // 페이지 이동
     @GetMapping("")
-    public String goToMessageRoom(){
+    public String goToMessageRoom() {
         return "message/message";
+    }
+
+    // 메시지 작성
+    @PostMapping("/write")
+    @ResponseBody
+    public String write(@RequestBody MessageDTO messageDTO) {
+        log.info("메시지 작성 요청: {}", messageDTO);
+        messageService.write(messageDTO);
+        return "ok";
     }
 }
