@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -16,12 +17,12 @@ public class MemberCareerDAO {
     private final MyPageMapper myPageMapper;
 
 //    경력 등록
-    public void save(MemberCareerDTO memberCareerDTO){
-        myPageMapper.careerInsert(memberCareerDTO);
+    public void save(MemberCareerVO memberCareerVO){
+        myPageMapper.careerInsert(memberCareerVO);
     }
 
-//    경력 조회
-    public Optional<MemberCareerDTO> findByMemberId(Long id){
-        return myPageMapper.selectById(id);
+//    목록
+    public List<MemberCareerDTO> findCareerByMemberId(Long id){
+        return myPageMapper.selectAllByMemberId(id);
     }
 }

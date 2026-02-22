@@ -1,0 +1,102 @@
+/* ========================================
+   경력 관리 전용 스타일
+   ======================================== */
+
+/* 빈 상태 메시지 */
+.career-empty-message {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 14px;
+}
+
+/* 경력 카드 */
+.career-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+    background: #fafafa;
+    transition: all 0.2s ease;
+}
+
+.career-card:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    border-color: #bbb;
+}
+
+/* 회사명 */
+.career-title {
+    margin: 0 0 12px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #222;
+}
+
+/* 경력 정보 영역 */
+.career-info {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+/* 배지 스타일 (고용형태, 직무) */
+.career-badge {
+    padding: 4px 10px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #555;
+}
+
+/* 근무기간 */
+.career-period {
+    padding: 4px 10px;
+    font-size: 13px;
+    color: #666;
+}
+
+/* 액션 영역 (삭제 버튼) */
+.career-actions {
+    text-align: right;
+}
+
+/* 삭제 버튼 */
+.career-delete-btn {
+    display: inline-block;
+    padding: 6px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #666;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.career-delete-btn:hover {
+    border-color: #999;
+    color: #333;
+    cursor: pointer;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .career-card {
+        padding: 16px;
+    }
+
+    .career-title {
+        font-size: 16px;
+    }
+
+    .career-info {
+        gap: 8px;
+    }
+
+    .career-badge,
+    .career-period {
+        font-size: 12px;
+    }
+}

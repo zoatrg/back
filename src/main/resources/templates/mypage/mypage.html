@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/mypage/mypage.css">
     <link rel="stylesheet" href="/css/mypage/mypage-sub-style.css">
     <link rel="stylesheet" href="/css/main/main.css">
-
+    <link rel="stylesheet" href="/css/mypage/career.css">
 </head>
 
 <body>
@@ -625,8 +625,7 @@
                             <span class="plus-icon">+</span> 경력 추가하기
                         </button>
                     </div>
-                    <form action="/mypage" method="post" name="career-form" class="careerForm" th:object="${member}">
-                        <div class="modal-form">
+                        <div class="modal-form" th:object="${member}">
                             <div class="form-row">
                                 <div class="form-group half">
                                     <label class="required">소속</label>
@@ -681,14 +680,13 @@
                                 <textarea id="career-desc" name="introDetailed" placeholder="주요 성과, 업무 내용 등을 입력하세요"></textarea>
                             </div>
                             <th:block>
-                                <input type="hidden" name="memberId" th:value="${member.id}">
+                                <input id="member-id" type="hidden" name="memberId" th:value="${member.id}">
                             </th:block>
                             <div class="modal-footer">
                                 <button class="btn-delete" type="button">경력 삭제</button>
-                                <button class="save-btn" id="save-career-btn" type="submit">저장하기</button>
+                                <button class="save-btn" id="save-career-btn" type="button">저장하기</button>
                             </div>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -1212,8 +1210,10 @@
     <script src="/js/mypage/logo-carousel.js" defer></script>
     <script src="/js/mypage/tab-switch.js" defer></script>
     <script src="/js/mypage/mypage.js" defer></script>
-    <script src="/js/mypage/event.js"></script>
-    <script src="/js/main/main.js"></script>
+<script src="/js/mypage/service.js"></script>
+<script src="/js/mypage/layout.js"></script>
+<script src="/js/mypage/event.js"></script>
+<script src="/js/main/main.js"></script>
 </body>
 
 </html>

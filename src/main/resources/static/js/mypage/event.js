@@ -33,3 +33,51 @@ changeModalBtns.forEach(changeModalBtn => {
         _thisForm.classList.remove("none")
     })
 })
+
+const registerBtn = document.getElementById("save-career-btn");
+const affilationTitle = document.getElementById("career-company");
+const careerType = document.getElementById("career-type");
+const startYear = document.getElementById("career-start-year");
+const endYear = document.getElementById("career-end-year");
+const startMonth = document.getElementById("career-start-month");
+const endMonth = document.getElementById("career-end-month");
+const careerSkill = document.getElementById("career-skills");
+const careerRole = document.getElementById("career-role");
+const careerDescription = document.getElementById("career-desc");
+let memberId = null;
+const memberIdInput = document.getElementById("member-id");
+const closeModal = document.getElementById("career-modal");
+const careerInput = document.querySelector(".modal-container");
+const careerContainer = document.querySelector('.user-content-history-content-wrap');
+
+console.log(careerInput)
+
+if(memberIdInput){
+    memberId = memberIdInput.value;
+}
+
+registerBtn.addEventListener("click", async (e) => {
+    await myPageService.register(
+        {
+            affiliationTitle : affilationTitle.value,
+            memberEmploymentType : careerType.value,
+            startYear : startYear.value,
+            endYear : endYear.value,
+            startMonth : startMonth.value,
+            endMonth : endMonth.value,
+            memberSkill : careerSkill.value,
+            memberRole : careerRole.value,
+            introDetailed : careerDescription.value,
+            memberId : memberId
+        });
+    await myPageService.getList(memberId, myPageLayout.showList);
+
+    careerInput.querySelectorAll("input", "textarea", "select").forEach(input => {
+        if(input.type === "select"){
+            input.selectedIndex = 0;
+        } else {
+            input.value = "";
+        }
+    });
+    closeModal.style.display = "none";
+})

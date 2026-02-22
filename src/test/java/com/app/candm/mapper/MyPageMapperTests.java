@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
@@ -32,13 +33,17 @@ public class MyPageMapperTests {
         memberCareerDTO.setMemberId(4L);
 
         log.info("{},,,,,,,,,,,,,",memberCareerDTO);
-        mypageMapper.careerInsert(memberCareerDTO);
+        mypageMapper.careerInsert(memberCareerDTO.toMemberCareerVO());
     }
 
     @Test
     public void testFindById(){
-        Optional<MemberCareerDTO> foundCareer = mypageMapper.selectById(5L);
-        log.info("{},,,,,,,,,,,,,,,,,", foundCareer.isEmpty());
+//        Optional<MemberCareerDTO> foundCareer = mypageMapper.selectById(5L);
+//        log.info("{},,,,,,,,,,,,,,,,,", foundCareer.isEmpty());
+        List<MemberCareerDTO> careers = mypageMapper.selectAllByMemberId(4L);
+        log.info("{},,,,,,,,,,,,,,,,,",careers);
     }
+
+
 
 }
