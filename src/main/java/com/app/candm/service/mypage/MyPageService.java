@@ -35,6 +35,10 @@ public class MyPageService {
         return memberWithCareerDTO;
     }
 
+//    삭제
+    public void delete(Long id){
+        memberCareerDAO.delete(id);
+    }
 
     public MemberCareerDTO toDTO(MemberCareerVO memberCareerVO){
         MemberCareerDTO memberCareerDTO = new MemberCareerDTO();

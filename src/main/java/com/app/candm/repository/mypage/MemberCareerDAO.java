@@ -25,4 +25,10 @@ public class MemberCareerDAO {
     public List<MemberCareerDTO> findCareerByMemberId(Long id){
         return myPageMapper.selectAllByMemberId(id);
     }
+
+//    삭제
+    public void delete(Long id){
+        myPageMapper.delete(id);
+    }
+
 }

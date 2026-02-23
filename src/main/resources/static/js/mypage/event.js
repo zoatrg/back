@@ -56,6 +56,9 @@ if(memberIdInput){
     memberId = memberIdInput.value;
 }
 
+
+myPageService.getList(memberId, myPageLayout.showList);
+
 registerBtn.addEventListener("click", async (e) => {
     await myPageService.register(
         {
@@ -80,4 +83,15 @@ registerBtn.addEventListener("click", async (e) => {
         }
     });
     closeModal.style.display = "none";
+})
+
+
+careerContainer.addEventListener("click", async (e) => {
+    e.preventDefault();
+    const careerId = e.target.dataset.id;
+
+    if(e.target.classList.contains("career-delete-btn")){
+        await myPageService.deleteCareer(careerId);
+        await myPageService.getList(memberId, myPageLayout.showList);
+    }
 })

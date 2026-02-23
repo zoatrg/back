@@ -53,4 +53,10 @@ public class MyPageController {
     public MemberWithCareerDTO careerList(@PathVariable Long memberId){
         return myPageService.getCareerByMemberId(memberId);
     }
+
+    @DeleteMapping("{id}")
+    public void deleteCareer(@PathVariable Long id){
+        myPageService.delete(id);
+    }
+
 }

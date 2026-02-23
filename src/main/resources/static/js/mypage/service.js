@@ -13,13 +13,17 @@ const myPageService = (() => {
 
     // 목록
     const getList = async (memberId, callback) => {
-        const response = await fetch(`/mypage?memberId=${memberId}`);
-        const careers = await response.json();
+        const response = await fetch(`/mypage/${memberId}`);
+        const data = await response.json();
         if(callback){
-            callback(careers);
+            callback(data);
         }
     }
 
+    // 삭제
+    const deleteCareer = async (careerId) => {
+        await fetch(`/mypage/${careerId}`, {method: 'DELETE'});
+    }
 
-    return {register: register, getList: getList};
+    return {register: register, getList: getList, deleteCareer: deleteCareer};
 })();

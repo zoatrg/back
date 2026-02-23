@@ -15,7 +15,7 @@ public interface MyPageMapper {
     public void careerInsert(MemberCareerVO memberCareerVO);
 
 //    목록
-    public List<MemberCareerDTO> selectAllByMemberId(@Param("id") Long id);
+    public List<MemberCareerDTO> selectAllByMemberId(@Param("memberId") Long id);
 
 //    수정
     public void update(MemberCareerDTO memberCareerDTO);

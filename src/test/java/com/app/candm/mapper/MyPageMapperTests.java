@@ -44,6 +44,10 @@ public class MyPageMapperTests {
         log.info("{},,,,,,,,,,,,,,,,,",careers);
     }
 
+    @Test
+    public void testDelete(){
+        mypageMapper.delete(30L);
+    }
 
 
 }

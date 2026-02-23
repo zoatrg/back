@@ -16,6 +16,11 @@
         where c.member_id = #{memberId}
     </select>
 
+<!--    삭제-->
+    <delete id="delete">
+        delete from tbl_member_career
+        where id = #{id}
+    </delete>
 
 
 </mapper>
