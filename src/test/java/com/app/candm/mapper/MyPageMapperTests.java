@@ -1,6 +1,7 @@
 package com.app.candm.mapper;
 
 import com.app.candm.common.enumeration.FileContentType;
+import com.app.candm.domain.MemberActivityFileVO;
 import com.app.candm.domain.MemberCareerVO;
 import com.app.candm.domain.MemberEducationVO;
 import com.app.candm.dto.FileDTO;
@@ -130,5 +131,16 @@ public class MyPageMapperTests {
         memberActivityDTO.setActivityFiles(fileList);
 
         mypageMapper.activityInsert(memberActivityDTO.toMemberActivityVO()); // 🔥 실제 저장 호출
+    }
+
+    @Test
+    public void testFindFiletAllByMemberId(){
+        MemberActivityFileDTO memberActivityFileDTO = new MemberActivityFileDTO();
+        List<MemberActivityFileDTO> fileList = new ArrayList<>();
+
+
+
+        List<MemberActivityFileDTO> files = memberActivityFileMapper.selectAllByMemberId(5L);
+        log.info("{},,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",files);
     }
 }
