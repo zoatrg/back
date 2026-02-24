@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -89,14 +90,17 @@ public class MyPageController {
     @ResponseBody
     public void activityRegist(MemberActivityDTO memberActivityDTO, @RequestParam(value = "file", required = false) ArrayList<MultipartFile> multipartFiles){
         String startDate = memberActivityDTO.getStartYear() + "-" + memberActivityDTO.getStartMonth();
-        String endDate = memberActivityDTO.getEndYear() + "-" + memberActivityDTO.getEndMonth();
-
         memberActivityDTO.setStartDate(startDate);
-        memberActivityDTO.setEndDate(endDate);
 
         log.info("memberEducationDTO : {}",memberActivityDTO);
         log.info("multipartFiles : {}",multipartFiles != null ? multipartFiles.size() : 0);
 
         myPageService.regist(memberActivityDTO, multipartFiles);
+    }
+
+    @GetMapping("activity/{memberId}")
+    @ResponseBody
+    public List<MemberActivityDTO> activityList(@PathVariable Long memberId){
+        return myPageService.getActivityByMemberId(memberId);
     }
 }

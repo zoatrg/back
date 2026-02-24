@@ -14,6 +14,8 @@ public class MemberActivityVO extends Period {
     private String awardTitle;
     private String activityType;
     private String startDate;
-    private String endDate;
     private Long memberId;
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

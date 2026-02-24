@@ -1,9 +1,12 @@
 package com.app.candm.repository.mypage;
 
 import com.app.candm.domain.MemberActivityFileVO;
+import com.app.candm.dto.mypage.MemberActivityFileDTO;
 import com.app.candm.mapper.MemberActivityFileMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -14,6 +17,11 @@ public class MemberActivityFileDAO {
 //    추가
     public void save(MemberActivityFileVO memberActivityFileVO){
         memberActivityFileMapper.insert(memberActivityFileVO);
+    }
+
+//    목록
+    public List<MemberActivityFileDTO> findAllByMemberId(Long id){
+        return memberActivityFileMapper.selectAllByMemberId(id);
     }
 
 }

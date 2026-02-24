@@ -5,7 +5,7 @@ import com.app.candm.mapper.FileMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository( "mypagefileDAO")
 @RequiredArgsConstructor
 public class FileDAO {
     private final FileMapper fileMapper;

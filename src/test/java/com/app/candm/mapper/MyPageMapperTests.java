@@ -2,6 +2,7 @@ package com.app.candm.mapper;
 
 import com.app.candm.common.enumeration.FileContentType;
 import com.app.candm.domain.MemberActivityFileVO;
+import com.app.candm.domain.MemberActivityVO;
 import com.app.candm.domain.MemberCareerVO;
 import com.app.candm.domain.MemberEducationVO;
 import com.app.candm.dto.FileDTO;
@@ -9,6 +10,8 @@ import com.app.candm.dto.mypage.MemberActivityDTO;
 import com.app.candm.dto.mypage.MemberActivityFileDTO;
 import com.app.candm.dto.mypage.MemberCareerDTO;
 import com.app.candm.dto.mypage.MemberEducationDTO;
+import com.app.candm.repository.mypage.MemberActivityDAO;
+import com.app.candm.repository.mypage.MemberActivityFileDAO;
 import com.app.candm.repository.mypage.MemberEducationDAO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -29,6 +32,10 @@ public class MyPageMapperTests {
     private MemberMapper memberMapper;
     @Autowired
     private FileMapper fileMapper;
+    @Autowired
+    private MemberActivityDAO memberActivityDAO;
+    @Autowired
+    private MemberActivityFileDAO memberActivityFileDAO;
     @Autowired
     private MemberActivityFileMapper memberActivityFileMapper;
 
@@ -126,7 +133,6 @@ public class MyPageMapperTests {
         memberActivityDTO.setAwardTitle("운전면허증");
         memberActivityDTO.setActivityType("자격증");
         memberActivityDTO.setStartDate("2024-02");
-        memberActivityDTO.setEndDate("2024-02");
         memberActivityDTO.setMemberId(4L);
         memberActivityDTO.setActivityFiles(fileList);
 
@@ -134,13 +140,27 @@ public class MyPageMapperTests {
     }
 
     @Test
+    public void testFindActivityByIdMemberId(){
+        List<MemberActivityDTO> activities = mypageMapper.selectActivityByMemberId(5L);
+        log.info("{},,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",activities.toString());
+    }
+
+    @Test
     public void testFindFiletAllByMemberId(){
-        MemberActivityFileDTO memberActivityFileDTO = new MemberActivityFileDTO();
-        List<MemberActivityFileDTO> fileList = new ArrayList<>();
-
-
 
         List<MemberActivityFileDTO> files = memberActivityFileMapper.selectAllByMemberId(5L);
         log.info("{},,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",files);
+    }
+
+    @Test
+    public void getActivityByMemberId(){
+        List<MemberActivityDTO> activities = memberActivityDAO.findActivityByMemberId(5L);
+
+        activities.forEach(activityDTO -> {
+            List<MemberActivityFileDTO> files = memberActivityFileDAO.findAllByMemberId(5L);
+            activityDTO.setActivityFiles(files);
+        });
+
+        log.info("{},,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",activities);
     }
 }

@@ -60,6 +60,7 @@ if(memberIdInput){
 
 myPageService.getCareerList(memberId, myPageLayout.showList);
 myPageEducationService.getEducationList(memberId, educationLayout.showList);
+myPageActivityService.getActivityList(memberId, activityLayout.showList);
 
 registerBtn.addEventListener("click", async (e) => {
     await myPageService.careerRegister(
@@ -158,32 +159,36 @@ const activityModal = document.getElementById("setting-modal");
 
 activityRegisterBtn.addEventListener("click", async (e) => {
     e.preventDefault();
+
+    const files = activityFile.files;
+    if(files.length > 5){
+        alert("파일은 최대 5개까지만 등록 가능합니다.");
+        return;
+    }
+
+    const maxSize = 10 * 1024 * 1024;
+    for(let i = 0; i < files.length; i++){
+        if(files[i].size > maxSize){
+            alert("파일이 너무 큽니다. (최대 10MB)");
+            return;
+        }
+    }
+
+
     const formData = new FormData();
     // 일반데이터 추가
     formData.append("awardTitle", activityTitle.value);
     formData.append("activityType", activityType.value);
-    formData.append("activityStartYear", actStartYear.value);
-    formData.append("activityStartMonth", actStartMonth.value);
+    formData.append("startYear", actStartYear.value);
+    formData.append("startMonth", actStartMonth.value);
     formData.append("memberId", memberId);
 
-    FileList.prototype.forEach = Array.prototype.forEach;
-
-    // 다중 파일 추가
-    const files = activityFile.files;
-    files.forEach((file) => {
-        file.addEventListener("change", (e) => {
-            e.target.files.forEach((file) => {
-                if(file.size / 1024 / 1024 > 10){
-                    return alert("파일이 너무 큽니다.");
-                }
-            })
-        })
-    })
     for(let i = 0; i < files.length; i++){
         formData.append("file", files[i]);
     }
 
     await myPageActivityService.activityRegister(formData);
+    await myPageActivityService.getActivityList(memberId, activityLayout.showList);
 
     modalInput.forEach(modal => {
         modal.querySelectorAll("input, textarea").forEach(el => el.value = "");

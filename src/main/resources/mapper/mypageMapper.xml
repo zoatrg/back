@@ -46,10 +46,17 @@
 
 <!-- ===========================================================활동========================================================   -->
 
-    <insert id="activityInsert" useGeneratedKeys="true" keyProperty="id">
-        insert into tbl_member_activity(award_title, activity_type, start_date, end_date, member_id)
-        values (#{awardTitle}, #{activityType}, #{startDate}, #{endDate}, #{memberId})
+    <insert id="activityInsert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into tbl_member_activity(award_title, activity_type, start_date, member_id)
+        values (#{awardTitle}, #{activityType}, #{startDate}, #{memberId})
     </insert>
 
+
+    <select id="selectActivityByMemberId">
+        select ma.id, ma.award_title, ma.activity_type, ma.start_date, ma.member_id, ma.created_datetime, ma.updated_datetime ,m.id
+        from tbl_member_activity ma join tbl_member m
+        on ma.member_id = m.id
+        where ma.member_id = #{memberId}
+    </select>
 </mapper>
 

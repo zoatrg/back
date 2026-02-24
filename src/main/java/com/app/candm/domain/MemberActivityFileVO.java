@@ -11,4 +11,5 @@ import lombok.*;
 public class MemberActivityFileVO {
     private Long id;
     private Long memberId;
+    private Long memberActivityId;
 }

@@ -18,6 +18,7 @@ public class MemberActivityFileDTO {
     private String fileSize;
     private FileContentType fileContentType;
     private Long memberId;
+    private Long memberActivityId;
     private String createdDatetime;
     private String updatedDatetime;
 
@@ -38,6 +39,7 @@ public class MemberActivityFileDTO {
         return MemberActivityFileVO.builder()
                 .id(id)
                 .memberId(memberId)
+                .memberActivityId(memberActivityId)
                 .build();
     }
 }

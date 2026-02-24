@@ -1,6 +1,8 @@
 package com.app.candm.service.mypage;
 
 import com.app.candm.common.enumeration.FileContentType;
+import com.app.candm.domain.MemberActivityFileVO;
+import com.app.candm.domain.MemberActivityVO;
 import com.app.candm.domain.MemberCareerVO;
 import com.app.candm.domain.MemberVO;
 import com.app.candm.dto.FileDTO;
@@ -101,7 +103,20 @@ public class MyPageService {
         FileDTO fileDTO = new FileDTO();
         MemberActivityFileDTO memberActivityFileDTO = new MemberActivityFileDTO();
 
-        memberActivityDAO.save(memberActivityDTO.toMemberActivityVO());
+        MemberActivityVO activityVO = memberActivityDTO.toMemberActivityVO();
+        memberActivityDAO.save(activityVO);
+
+        Long generatedActivityId = memberActivityDTO.getMemberActivityId();
+        if (generatedActivityId == null) {
+            throw new IllegalStateException(
+                    "tbl_member_activity 저장 후 생성된 id를 받지 못했습니다. " +
+                            "MyBatis activityInsert의 useGeneratedKeys/keyProperty/keyColumn 설정을 확인하세요."
+            );
+        }
+        // DTO에도 필요하면 동기화 (memberActivityId 필드를 계속 쓸 거라면)
+        memberActivityDTO.setMemberActivityId(generatedActivityId);
+        memberActivityDTO.setId(generatedActivityId);
+
         multipartFiles.forEach(multipartFile -> {
             if(multipartFile.getOriginalFilename().isEmpty()){
                 return;
@@ -116,7 +131,11 @@ public class MyPageService {
 
             memberActivityFileDTO.setId(fileDTO.getId());
             memberActivityFileDTO.setMemberId(memberActivityDTO.getMemberId());
-            memberActivityFileDAO.save(memberActivityFileDTO.toMemberActivityFileVO());
+            memberActivityFileDTO.setMemberActivityId(generatedActivityId);
+
+            MemberActivityFileVO memberActivityFileVO = memberActivityFileDTO.toMemberActivityFileVO();
+            memberActivityFileDAO.save(memberActivityFileVO);
+
             File directory = new File(rootPath + "/" + fileDTO.getFilePath());
             if(!directory.exists()){
                 directory.mkdirs();
@@ -129,8 +148,20 @@ public class MyPageService {
         });
     }
 
-
     public String getTodayPath(){
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
     }
+
+//    활동 목록
+    public List<MemberActivityDTO> getActivityByMemberId(Long id){
+        List<MemberActivityDTO> activities = memberActivityDAO.findActivityByMemberId(id);
+
+        activities.forEach(activityDTO -> {
+            List<MemberActivityFileDTO> files = memberActivityFileDAO.findAllByMemberId(activityDTO.getId());
+            activityDTO.setActivityFiles(files);
+        });
+
+        return activities;
+    }
+
 }

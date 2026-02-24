@@ -18,10 +18,8 @@ public class MemberActivityDTO {
     private String startDate;
     private String startYear;
     private String startMonth;
-    private String endDate;
-    private String endYear;
-    private String endMonth;
     private Long memberId;
+    private Long memberActivityId;
     private String createdDatetime;
     private String updatedDatetime;
 
@@ -34,7 +32,6 @@ public class MemberActivityDTO {
                 .awardTitle(awardTitle)
                 .activityType(activityType)
                 .startDate(startDate)
-                .endDate(endDate)
                 .memberId(memberId)
                 .createdDatetime(createdDatetime)
                 .updatedDatetime(updatedDatetime)

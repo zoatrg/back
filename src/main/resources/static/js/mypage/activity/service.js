@@ -9,7 +9,22 @@ myPageActivityService = (() => {
     }
 
     // 목록
-    const getActivityList = async (memberId, callback) => {}
+    const getActivityList = async (memberId, callback) => {
+        console.log("memberId",memberId);
+        // console.log("memberActivityId",memberActivityId);
+        try{
+            const response = await fetch(`/mypage/activity/${memberId}`);
+            const data = await response.json();
+            console.log("받은 데이터,,,,,,,,,,,,,",data);
+            if(callback){
+                callback(data);
+            }
+        } catch (e) {
+            console.log("조회에러", e);
+        }
+
+
+    }
 
     return {activityRegister: activityRegister, getActivityList: getActivityList}
 })();

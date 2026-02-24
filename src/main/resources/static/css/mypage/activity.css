@@ -1,0 +1,257 @@
+/* ========================================
+   활동/대외활동 관리 전용 스타일
+   ======================================== */
+
+/* 빈 상태 메시지 */
+.activity-empty-message {
+    text-align: center;
+    padding: 60px 20px;
+    color: #aaa;
+    font-size: 15px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    border: 2px dashed #ddd;
+    margin: 20px 0;
+}
+
+/* 활동 카드 */
+.activity-card {
+    position: relative;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 24px;
+    padding-left: 28px;
+    margin-bottom: 20px;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.activity-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 24px;
+    bottom: 24px;
+    width: 4px;
+    background: linear-gradient(180deg, #9b59b6 0%, #8e44ad 100%);
+    border-radius: 0 2px 2px 0;
+    transition: all 0.3s ease;
+}
+
+.activity-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: #ccc;
+}
+
+.activity-card:hover::before {
+    background: linear-gradient(180deg, #8e44ad 0%, #7d3c98 100%);
+    width: 5px;
+}
+
+/* 활동명 */
+.activity-title {
+    margin: 0 0 16px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
+}
+
+/* 정보 영역 */
+.activity-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+/* 활동 타입 배지 */
+.activity-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    background: #f3e8ff;
+    border: 1px solid #d8b4fe;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #7c3aed;
+    transition: all 0.2s ease;
+}
+
+.activity-badge:hover {
+    background: #e9d5ff;
+    border-color: #c084fc;
+}
+
+/* 취득일 */
+.activity-date {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    font-size: 13px;
+    color: #777;
+    font-weight: 500;
+    background: #fafafa;
+    border-radius: 6px;
+    margin-left: auto;
+}
+
+.activity-date::before {
+    content: '📅';
+    margin-right: 6px;
+    font-size: 14px;
+}
+
+/* 이미지 목록 */
+.activity-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+/* 이미지 */
+.activity-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+    background: #f9f9f9;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.activity-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: #ccc;
+}
+
+/* 액션 영역 (삭제 버튼) */
+.activity-actions {
+    text-align: right;
+}
+
+/* 삭제 버튼 */
+.activity-delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 18px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #666;
+    background: white;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.activity-delete-btn:hover {
+    border-color: #ff4444;
+    color: #ff4444;
+    background: #fff5f5;
+    box-shadow: 0 2px 4px rgba(255, 68, 68, 0.1);
+    cursor: pointer;
+    transform: translateY(-1px);
+}
+
+.activity-delete-btn::before {
+    content: '🗑️';
+    margin-right: 4px;
+    font-size: 12px;
+}
+
+/* 컨테이너 */
+.user-content-activity-content-wrap {
+    padding: 4px 0;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .activity-card {
+        padding: 20px;
+        padding-left: 24px;
+        margin-bottom: 16px;
+    }
+
+    .activity-card::before {
+        top: 20px;
+        bottom: 20px;
+    }
+
+    .activity-title {
+        font-size: 18px;
+        margin-bottom: 14px;
+    }
+
+    .activity-info {
+        gap: 8px;
+    }
+
+    .activity-badge,
+    .activity-date {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    .activity-date {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .activity-images {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+    }
+
+    .activity-image {
+        height: 150px;
+    }
+
+    .activity-delete-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .activity-card {
+        padding: 16px;
+        padding-left: 20px;
+    }
+
+    .activity-title {
+        font-size: 16px;
+    }
+
+    .activity-badge {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+
+    .activity-images {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-image {
+        height: 180px;
+    }
+
+    .activity-delete-btn::before {
+        content: '🗑️';
+        margin-right: 0;
+    }
+
+    .activity-delete-btn {
+        padding: 6px 10px;
+    }
+}
