@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const appendMessage = (content, isMe = true, isImage = false) => {
         const now = new Date();
         const timeString = now.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', hour12: true });
-        
+
         const messageRow = document.createElement('div');
         messageRow.className = `message-row ${isMe ? 'me' : 'other'}`;
 
@@ -43,35 +43,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         chatContent.appendChild(messageRow);
-        
+
         // 스크롤 아래로 이동
         chatContent.scrollTop = chatContent.scrollHeight;
     };
 
     // 2. 텍스트 메시지 전송 이벤트
-    const handleSendMessage = () => {
+    const handleSendMessage = async () => {
         const text = messageInput.value.trim();
         if (text) {
             // 화면에 말풍선 표시
             appendMessage(text, true, false);
+            await messageService.sendMessage({
+                messageContent: text,
+                senderId: 1,      // 임시값
+                receiverId: 2     // 임시값
+            });
+
             messageInput.value = '';
             sendBtn.classList.remove('active');
 
-            // 백엔드로 전송 → DB 저장
-            fetch('/message/write', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    messageContent: text,
-                    messageRoomId: 1,
-                    senderId: 1,
-                    receiverId: 2
-                })
-            })
-            .then(response => response.text())
-            .then(result => console.log('DB 저장 완료:', result));
         }
     };
+
+    // 백엔드로 전송 → DB 저장
+    //     fetch('/message/write', {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify({
+    //             messageContent: text,
+    //             messageRoomId: 1,
+    //             senderId: 1,
+    //             receiverId: 2
+    //         })
+    //     })
+    //     .then(response => response.text())
+    //     .then(result => console.log('DB 저장 완료:', result));
 
     sendBtn.addEventListener('click', handleSendMessage);
 

@@ -7,31 +7,7 @@
     </insert>
 
     <!-- 목록: 특정 방의 메시지 전부 -->
-    <select id="selectAllByMessageRoomId" resultType="MessageDTO">
-        SELECT
-            m.id,
-            m.sender_id,
-            m.receiver_id,
-            m.message_status,
-            m.notification_datetime,
-            m.message_content,
-            m.message_room_id
-        FROM tbl_message m
-        WHERE m.message_room_id = #{messageRoomId}
-        ORDER BY m.notification_datetime
-    </select>
 
     <!-- 상세: 메시지 하나 -->
-    <select id="selectById" resultType="MessageDTO">
-        SELECT
-            m.id,
-            m.sender_id,
-            m.receiver_id,
-            m.message_status,
-            m.notification_datetime,
-            m.message_content,
-            m.message_room_id
-        FROM tbl_message m
-        WHERE m.id = #{id}
-    </select>
+
 </mapper>

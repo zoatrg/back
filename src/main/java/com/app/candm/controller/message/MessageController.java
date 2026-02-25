@@ -22,11 +22,9 @@ public class MessageController {
     }
 
     // 메시지 작성
-    @PostMapping("/write")
+    @PostMapping("/send")
     @ResponseBody
-    public String write(@RequestBody MessageDTO messageDTO) {
-        log.info("메시지 작성 요청: {}", messageDTO);
+    public void sendMessage(@RequestBody MessageDTO messageDTO) {
         messageService.write(messageDTO);
-        return "ok";
     }
 }

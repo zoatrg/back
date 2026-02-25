@@ -4,18 +4,15 @@
 
     <!-- 방 생성 -->
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO tbl_message_room (created_member_id, invited_member_id)
-        VALUES (#{createdMemberId}, #{invitedMemberId})
+        insert into tbl_message_room (created_member_id, invited_member_id)
+        values (#{senderId}, #{receiverId})
     </insert>
 
-    <!-- 내 채팅방 목록 -->
-    <select id="selectAllByMemberId" resultType="MessageRoomDTO">
-        SELECT
-            r.id,
-            r.created_member_id,
-            r.invited_member_id
-        FROM tbl_message_room r
-        WHERE r.created_member_id = #{memberId}
-           OR r.invited_member_id = #{memberId}
+    <!-- 방 조회 -->
+    <select id="selectByCreatedMemberIdAndInvitedMemberId">
+        select id from tbl_message_room
+        where created_member_id = #{senderId} and invited_member_id = #{receiverId}
     </select>
+
+
 </mapper>

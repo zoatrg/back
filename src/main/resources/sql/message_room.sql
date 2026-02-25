@@ -9,3 +9,5 @@ create table tbl_message_room
     constraint fk_message_room_invited_member foreign key (invited_member_id)
         references tbl_member (id)
 );
+
+select * from tbl_message_room;

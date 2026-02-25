@@ -18,7 +18,7 @@ public class MessageMapperTests {
         messageDTO.setSenderId(1L);
         messageDTO.setReceiverId(2L);
         messageDTO.setMessageContent("집에가고싶다");
-        messageDTO.setMessageRoomId(1L);
+        messageDTO.setMessageRoomId(2L);
         messageMapper.insert(messageDTO);
     }
 }

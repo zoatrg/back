@@ -1,15 +1,24 @@
 package com.app.candm.mapper;
 
+import com.app.candm.domain.MessageRoomVO;
+import com.app.candm.dto.message.MessageDTO;
 import com.app.candm.dto.message.MessageRoomDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface MessageRoomMapper {
     // 방 생성
-    public void insert(MessageRoomDTO messageRoomDTO);
+    public void insert(MessageDTO messageDTO);
+
+    // 방 조회
+    public Long selectByCreatedMemberIdAndInvitedMemberId(
+    MessageDTO messageDTO
+    );
 
     // 내 채팅방 목록
-    public List<MessageRoomDTO> selectAllByMemberId(Long memberId);
+
 }

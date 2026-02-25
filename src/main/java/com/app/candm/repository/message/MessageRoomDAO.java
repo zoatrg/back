@@ -1,5 +1,6 @@
 package com.app.candm.repository.message;
 
+import com.app.candm.dto.message.MessageDTO;
 import com.app.candm.dto.message.MessageRoomDTO;
 import com.app.candm.mapper.MessageRoomMapper;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,12 @@ public class MessageRoomDAO {
     private final MessageRoomMapper messageRoomMapper;
 
     // 방 생성
-    public void save(MessageRoomDTO messageRoomDTO) {
-        messageRoomMapper.insert(messageRoomDTO);
+    public void save(MessageDTO messageDTO) {
+        messageRoomMapper.insert(messageDTO);
+    }
+
+    // 방 조회
+    public Long findByCreatedMemberIdAndInvitedMemberId(MessageDTO messageDTO){
+        return messageRoomMapper.selectByCreatedMemberIdAndInvitedMemberId(messageDTO);
     }
 }

@@ -1,3 +1,5 @@
+drop table tbl_oauth;
+
 create table tbl_oauth
 (
     id bigint unsigned primary key,
