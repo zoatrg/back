@@ -32,7 +32,7 @@ public class MessageController {
     }
 
     // 메세지 목록 조회
-    @GetMapping("/list")
+    @GetMapping("/list?=memberId=2")
     @ResponseBody
     public List<MessageRoomDTO> getMessageList(Long memberId) {
         return messageService.getMessageRoomList(memberId);
