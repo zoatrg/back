@@ -40,9 +40,13 @@ public class FundingController {
     }
 
     @PostMapping("/funding-regist-page")
-    public RedirectView register(FundingDTO fundingDTO, RedirectAttributes redirectAttributes) {
+    public RedirectView register(FundingDTO fundingDTO, @RequestParam(value = "file", required = false) ArrayList<MultipartFile> files, RedirectAttributes redirectAttributes) {
         log.info("fundingDTO = .............{}", fundingDTO);
         fundingService.register(fundingDTO);
+        // 2. 파일이 있다면 파일 저장
+        if (files != null && !files.isEmpty()) {
+            fundingService.write(fundingDTO, files);
+        }
         redirectAttributes.addAttribute("teamId", fundingDTO.getTeamId());
         //  funding/funding-list 로 이동
         return new RedirectView("/funding/funding-list-page");
@@ -65,6 +69,4 @@ public class FundingController {
         fundingService.write(fundingDTO, multipartFiles);
         return new RedirectView("/post/list");
     }
-
-
 }

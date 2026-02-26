@@ -8,7 +8,7 @@ uploadBtnF.addEventListener("click", (e) => {
     fileInputF.click();
 });
 
-uploadBtnS.addEventListener("click", (e) => {
+    uploadBtnS.addEventListener("click", (e) => {
     fileInputS.click();
 });
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.candm.mapper.TeamFileMapper">
+    <insert id="insert">
+        insert into tbl_team_file(id, team_id)
+        values(#{id}, #{teamId})
+    </insert>
+    <select id="selectAllByTeamId">
+        select
+            id, file_path, file_name, file_original_name,
+            file_size, file_content_type, created_datetime, updated_datetime,
+            team_id
+        from view_team_file
+        where team_id = #{id}
+        order by created_datetime desc
+    </select>
+
+    <delete id="delete">
+        delete from tbl_team_file
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteByFundingId">
+        delete from tbl_team_file
+        where team_id = #{id}
+    </delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

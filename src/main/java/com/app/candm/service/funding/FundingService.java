@@ -96,4 +96,12 @@ public class FundingService {
     public String getTodayPath(){
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
     }
+
+    public void register(FundingDTO fundingDTO, ArrayList<MultipartFile> files) {
+        fundingDAO.save(fundingDTO);
+
+        if (files != null && !files.isEmpty()) {
+            this.write(fundingDTO, files);
+        }
+    }
 }

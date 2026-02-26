@@ -117,7 +117,7 @@
                                 <span class="funding-regist-form-ex highlight-text"> 커밋앤머지</span>
                             </div>
                             <div class="funding-regist-form-input-finalvalue-wrapper">
-                                <input class="funding-regist-form-input data-validata" type="text" name="team_name" id="input03" placeholder="팀 이름을 입력하세요" value="" autocomplete="off">
+                                <input class="funding-regist-form-input data-validata" type="text" name="teamTitle" th:value="${teamDTO.teamTitle}" id="input03" placeholder="팀 이름을 입력하세요" value="" autocomplete="off">
                                 <div class="funding-regist-form-input-finalvalue">
                                     <span>팀명을 입력하세요</span>
                                 </div>
@@ -143,7 +143,7 @@
                             </div>
                             <div class="url-input-wrapper">
                                 <span class="url-prefix">c-m.com/teams/</span>
-                                <input class="funding-regist-form-input data-validata" type="text" name="team_url" id="input04" placeholder="your-team-name" value="" autocomplete="off">
+                                <input class="funding-regist-form-input data-validata" type="text" name="teamUrl" th:value="${teamDTO.teamUrl}" id="input04" placeholder="your-team-name" value="" autocomplete="off">
                             </div>
                             <div class="funding-regist-form-input-finalvalue">
                                 <span>URL을 입력하세요</span>
@@ -471,7 +471,7 @@
                             </div>
                             <div class="funding-regist-form-memo-value-wrappper mb-40">
                                 <div class="funding-regist-form-memo-value-area">
-                                    <textarea name="team_description" id="funding-regist-form-memo" class="funding-regist-form-memo-value textarea-height" placeholder="팀의 비전, 목표, 현재 진행 상황 등을 자세히 소개해주세요."></textarea>
+                                    <textarea name="teamIntro" th:value="${teamDTO.teamIntro}" id="funding-regist-form-memo" class="funding-regist-form-memo-value textarea-height" placeholder="팀의 비전, 목표, 현재 진행 상황 등을 자세히 소개해주세요."></textarea>
                                 </div>
                             </div>
 
@@ -500,7 +500,7 @@
                                 <span class="funding-regist-form-ex">팀 등록 결과 및 파트너 연락을 받을 이메일 주소</span>
                             </div>
                             <div class="funding-regist-form-input-finalvalue-wrapper mb-30">
-                                <input class="funding-regist-form-input data-validata" type="email" name="email" id="input09" placeholder="example@domain.com" value="" autocomplete="off">
+                                <input class="funding-regist-form-input data-validata" type="teamContactEmail" th:value="${teamDTO.teamContactEmail}" name="email" id="input09" placeholder="example@domain.com" value="" autocomplete="off">
                                 <div class="funding-regist-form-input-finalvalue">
                                     <span>이메일을 입력하세요</span>
                                 </div>

@@ -4,6 +4,9 @@ import com.app.candm.common.enumeration.Status;
 import com.app.candm.domain.FundingVO;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -23,6 +26,7 @@ public class FundingDTO {
     private String createdDatetime;
     private Long teamId;
 
+    private List<FundingFileDTO> fundingFiles = new ArrayList<>();
     // VO로 변환하는 메서드
     public FundingVO toFundingVO() {
         return FundingVO.builder()
