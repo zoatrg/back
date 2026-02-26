@@ -6,12 +6,12 @@
         insert into tbl_funding (
             funding_target_amount, funding_title, start_date,
             end_date, funding_description, funding_contact_email,
-            team_id
+            team_id, funding_url
         )
         values (
                    #{fundingTargetAmount}, #{fundingTitle}, #{startDate},
                    #{endDate}, #{fundingDescription}, #{fundingContactEmail},
-                   #{teamId}
+                   #{teamId}, #{fundingUrl}
                )
     </insert>
 

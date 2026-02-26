@@ -1,5 +1,6 @@
 use CandM;
 -- 결제 테이블
+drop table tbl_pay;
 create table tbl_pay
 (
     id bigint auto_increment primary key,

@@ -14,6 +14,5 @@ public interface FundingFileMapper {
     public List<FundingFileDTO> selectAllByFundingId(Long id);
 //    삭제
     public void delete(Long id);
-//    삭제(게시글 아이디)
-    public void deleteByPostId(Long id);
+
 }

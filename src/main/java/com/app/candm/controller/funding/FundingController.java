@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,15 +33,19 @@ public class FundingController {
         FundingDTO dto = new FundingDTO();
         dto.setTeamId(teamId);
         model.addAttribute("fundingDTO", dto);
-        return "funding/funding-regist-page";
+        log.info("fundingDTO = {}.................", dto);
+
+        return "/funding/funding-regist-page";
+
     }
 
     @PostMapping("/funding-regist-page")
-    public RedirectView register(FundingDTO fundingDTO) {
+    public RedirectView register(FundingDTO fundingDTO, RedirectAttributes redirectAttributes) {
+        log.info("fundingDTO = .............{}", fundingDTO);
         fundingService.register(fundingDTO);
-
+        redirectAttributes.addAttribute("teamId", fundingDTO.getTeamId());
         //  funding/funding-list 로 이동
-        return new RedirectView("/funding/funding-list-page?teamId=" + fundingDTO.getTeamId());
+        return new RedirectView("/funding/funding-list-page");
     }
 
     /* ================= 펀딩 목록 ================= */
@@ -48,7 +55,16 @@ public class FundingController {
         List<FundingDTO> fundingList = fundingService.getListByTeam(teamId);
         model.addAttribute("fundingList", fundingList);
         model.addAttribute("teamId", teamId);
-        return "funding/funding-list-page";
+        return "/funding/funding-list-page";
     }
+    /*====================파일============================*/
+    @PostMapping("write")
+    public RedirectView write(FundingDTO fundingDTO,
+                              @RequestParam("file") ArrayList<MultipartFile> multipartFiles){
+
+        fundingService.write(fundingDTO, multipartFiles);
+        return new RedirectView("/post/list");
+    }
+
 
 }

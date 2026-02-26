@@ -14,6 +14,9 @@ create table tbl_member
 
 select * from tbl_member;
 
+
+insert into tbl_member (id, member_email, member_password, member_name, member_phone_number, member_status)
+values ('2', '12451@gmail.com', '24414', '박하민', '010-21321-3123', 'inactive');
 select *
 from tbl_member join tbl_member_career
 on tbl_member.id = tbl_member_career.member_id;

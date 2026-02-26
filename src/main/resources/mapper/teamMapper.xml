@@ -14,4 +14,12 @@
         select id, team_title, team_url, team_contact_email, team_status, team_intro, member_id
         from tbl_team where team_url = #{teamUrl}
     </select>
+    <select id="selectAllByMemberId" resultType="teamVO">
+        select
+            id, team_title, team_url, team_contact_email,
+            team_status, team_intro, member_id, created_datetime, updated_datetime
+        from tbl_team
+        where member_id = #{memberId}
+        order by created_datetime desc
+    </select>
 </mapper>

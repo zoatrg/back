@@ -2,11 +2,14 @@ package com.app.candm.service.team;
 
 import com.app.candm.domain.TeamVO;
 import com.app.candm.dto.TeamDTO;
+import com.app.candm.dto.funding.FundingDTO;
 import com.app.candm.repository.TeamDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -15,13 +18,13 @@ public class TeamRegistrationService {
     private final TeamDAO teamDAO;
 
     //    팀명
-    public boolean checkTeamTitle(String teamTitle){
-        return teamDAO.findByTitle(teamTitle).isEmpty();
-    }
-    //    팀URL 중복검사
-    public boolean checkTeamUrl(String teamUrl){
-        return teamDAO.findByUrl(teamUrl).isEmpty();
-    }
+//    public boolean checkTeamTitle(String teamTitle){
+//        return teamDAO.findByTitle(teamTitle).isEmpty();
+//    }
+//    //    팀URL 중복검사
+//    public boolean checkTeamUrl(String teamUrl){
+//        return teamDAO.findByUrl(teamUrl).isEmpty();
+//    }
 
     // 실제 팀 등록
     public TeamDTO registerTeam(TeamDTO teamDTO){
@@ -41,16 +44,22 @@ public class TeamRegistrationService {
 
     }
 //    중복검사 후 등록
-    public void registerTeamCheck(TeamDTO teamDTO){
-        if(!checkTeamTitle(teamDTO.getTeamTitle())){
-            throw new IllegalArgumentException("이미 존재하는 팀명입니다.");
-        }
-        if(!checkTeamUrl(teamDTO.getTeamUrl())){
-            throw new IllegalArgumentException("이미 존재하는 팀 URL입니다.");
-        }
-        teamDAO.save(teamDTO);
-    }
+//    public void registerTeamCheck(TeamDTO teamDTO){
+//        if(!checkTeamTitle(teamDTO.getTeamTitle())){
+//            throw new IllegalArgumentException("이미 존재하는 팀명입니다.");
+//        }
+//        if(!checkTeamUrl(teamDTO.getTeamUrl())){
+//            throw new IllegalArgumentException("이미 존재하는 팀 URL입니다.");
+//        }
+//        teamDAO.save(teamDTO);
+//        log.info("team id after insert = {}", teamDTO.getId());
+//    }
 
+
+    @Transactional(readOnly = true)
+    public List<TeamDTO> getListByMember(Long memberId) {
+        return teamDAO.findAllByMemberId(memberId);
+    }
 
 
 }

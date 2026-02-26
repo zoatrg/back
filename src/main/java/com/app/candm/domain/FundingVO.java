@@ -16,6 +16,7 @@ public class FundingVO extends Period {
     private String fundingTitle;
     private String startDate;
     private String endDate;
+    private String fundingUrl;
     private String fundingDescription;
     private String fundingContactEmail;
     private Status fundingStatus;

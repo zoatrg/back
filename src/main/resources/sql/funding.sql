@@ -8,6 +8,7 @@ funding_current_amount bigint default 0,
 funding_title varchar(255) not null,
 start_date date not null,
 end_date date not null,
+funding_url varchar(255) unique not null,
 funding_description text,
 funding_contact_email varchar(255) not null,
 created_datetime datetime default current_timestamp(),
@@ -17,3 +18,4 @@ constraint fk_funding_team foreign key (team_id)
                          references tbl_team(id)
 );
 
+select * from tbl_funding;

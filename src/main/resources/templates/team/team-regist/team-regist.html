@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>팀 등록 - C&M</title>
     <!-- 팀 등록 페이지 전용 스타일시트 -->
-    <link rel="stylesheet" href="../../../static/css/team/regist/team-regist..css">
+    <link rel="stylesheet" href="/css/team/regist/team-regist.css">
 </head>
 <body data-iframe-size="true">
     <div id="__next">
@@ -20,7 +20,8 @@
                 <!-- 팀 등록 폼 섹션 -->
                 <section class="funding-regist-section">
                     <!-- 파일 업로드를 포함한 멀티파트 폼 -->
-                    <form id="funding-regist-form" action="" enctype="multipart/form-data">
+                    <form id="funding-regist-form" action="/team/team-regist" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="memberId" th:value="${teamDTO.memberId}">
                         <!-- 진행률 표시 바 -->
                         <progress max="2" value="1">1 / 2 페이지</progress>
 
@@ -541,5 +542,5 @@
     </div>
 </body>
 <!-- 팀 등록 페이지 JavaScript 파일 -->
-<script src="../../../static/js/team/regist/regist.js"></script>
+<script src="/js/team/regist/regist.js"></script>
 </html>

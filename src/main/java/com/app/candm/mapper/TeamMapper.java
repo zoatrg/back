@@ -2,6 +2,7 @@ package com.app.candm.mapper;
 
 import com.app.candm.domain.TeamVO;
 import com.app.candm.dto.TeamDTO;
+import com.app.candm.dto.funding.FundingDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface TeamMapper {
     Optional<TeamVO> selectByUrl(String teamUrl);
 
     Optional<TeamVO> selectByTitle(String teamTitle);
+    // 팀별 목록 조회
+    public List<TeamDTO> selectAllByMemberId(Long MemberId);
 }

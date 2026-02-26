@@ -15,8 +15,18 @@ create table tbl_team
 );
 
 
+
 insert into tbl_team (team_title, team_intro, team_url, team_contact_email, member_id)
 values ('candm', 'hihi', '1234', '1234@gmail.com', '1')
 
 select * from tbl_team;
+
+
+select * from tbl_team;
+
+insert into tbl_team (team_title, team_intro, team_url, team_contact_email, member_id)
+values ('asf', 'asfsf', '1ffas234', '123421t3@gmail.com', '2')
+
+SELECT * FROM tbl_team WHERE team_title = '';
+DELETE FROM tbl_team WHERE team_title = '';
 

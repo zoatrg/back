@@ -2,6 +2,7 @@ package com.app.candm.repository;
 
 import com.app.candm.domain.TeamVO;
 import com.app.candm.dto.TeamDTO;
+import com.app.candm.dto.funding.FundingDTO;
 import com.app.candm.mapper.TeamMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -18,6 +19,10 @@ public class TeamDAO {
 //    전체 목록 조회
     public List<TeamVO> selectAll(Long Id) {return teamMapper.selectAll();}
 
+    // 팀별 펀딩 목록 조회
+    public List<TeamDTO> findAllByMemberId(Long MemberId) {
+        return teamMapper.selectAllByMemberId(MemberId);
+    }
     // 팀명으로 조회
     public Optional<TeamVO> findByTitle(String teamTitle) {
         return teamMapper.selectByTitle(teamTitle);

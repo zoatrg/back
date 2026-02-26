@@ -1,3 +1,4 @@
+drop table tbl_funding_file;
 create table tbl_funding_file(
   id bigint unsigned primary key,
   funding_id bigint unsigned not null,

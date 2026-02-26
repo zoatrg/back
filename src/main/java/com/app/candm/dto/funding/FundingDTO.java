@@ -16,6 +16,7 @@ public class FundingDTO {
     private String fundingTitle;
     private String startDate;
     private String endDate;
+    private String fundingUrl;
     private String fundingDescription;
     private String fundingContactEmail;
     private Status fundingStatus;
@@ -35,6 +36,7 @@ public class FundingDTO {
                 .fundingContactEmail(fundingContactEmail)
                 .fundingStatus(fundingStatus)
                 .teamId(teamId)
+                .fundingUrl(fundingUrl)
                 .build();
     }
 }
