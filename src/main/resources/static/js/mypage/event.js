@@ -34,6 +34,7 @@ changeModalBtns.forEach(changeModalBtn => {
     })
 })
 
+
 //===============================================경력 등록==========================================================
 
 const registerBtn = document.getElementById("save-career-btn");
@@ -210,12 +211,40 @@ activityContainer.addEventListener("click", async (e) => {
 })
 
 
+// ========================================프로필 파일 추가=====================================
+const profileWrap = document.getElementById("user-profile-wrap");
 
+console.log(profileWrap)
 
+profileWrap.addEventListener('click', (e) => {
+    console.log("들어옴")
+    // 1. 만약 클릭된게 input 그 자체가 아니라면 (무한 루프 방지)
+    if (e.target.id !== "owner-profile-input") {
+        const fileInput = document.getElementById("owner-profile-input");
 
+        // 2. 숨겨진 input을 강제로 클릭 시킴
+        fileInput.click();
+    }
+});
 
+console.log(memberId)
+profileWrap.addEventListener("change", async (e) => {
+    if (e.target.id === "owner-profile-input") {
+        const file = e.target.files[0];
+        if(!file) {
+            return alert("프로필 사진을 다시 등록하세요.");
+        }
 
+        const formData = new FormData();
+        formData.append("memberId", memberId);
+        formData.append("multipartFile", file);
 
+        await myProfileService.profileRegister(formData);
+        await myProfileService.profileSelect(memberId,profileLayout.showProfile);
+    //     리스트 뿌리는 쿼리
+
+    }
+})
 
 
 

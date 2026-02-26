@@ -1,7 +1,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.candm.mapper.MemberFileMapper">
-    <insert id="profileInsert">
+    <insert id="profileInsert" >
         insert into tbl_member_profile_file(id, member_id)
         values (#{id}, #{memberId})
     </insert>
+
+    <select id="selectByMemberId">
+        select
+            id, file_path, file_name, file_original_name,
+            file_size, file_content_type, created_datetime,
+            updated_datetime, member_id
+        from view_member_profile_file
+        where member_id = #{id}
+    </select>
 </mapper>

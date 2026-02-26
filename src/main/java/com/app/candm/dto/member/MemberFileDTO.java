@@ -33,7 +33,7 @@ public class MemberFileDTO {
                 .build();
     }
 
-    public MemberFileVO toPostFileVO(){
+    public MemberFileVO toMemberFileVO(){
         return MemberFileVO.builder()
                 .id(id)
                 .memberId(memberId)

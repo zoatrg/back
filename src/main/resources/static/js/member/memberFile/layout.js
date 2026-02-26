@@ -1,0 +1,29 @@
+const profileLayout = (() => {
+    const showProfile = (profile) => {
+        const profileWrap = document.getElementById("user-profile-wrap");
+        const image = profile
+
+        let text = ``;
+
+        // 2. 서버에서 넘어온 Optional 알맹이(MemberFileDTO) 해체
+        // profile 객체 안에 있는 필드명을 정확히 써야 합니다! (예: filePath, fileName)
+        const { filePath, fileName } = profile;
+
+        // 3. FileController의 display 메서드를 호출하는 URL 생성
+        // 쿼리 스트링(?filePath=...&fileName=...) 형식으로 보내야 합니다.
+        const displayUrl = `/api/files/display?filePath=${filePath}&fileName=${fileName}`;
+
+        if(profile !== null){
+            text = `
+                <div class="user-profile-wrap">
+                    <div class="user-profile-img-wrap">
+                        <img src="${displayUrl}" alt="profile-img" class="pro-img">
+                    </div>
+                </div>
+            `
+            profileWrap.innerHTML = text;
+        }
+
+    }
+    return {showProfile: showProfile};
+})();

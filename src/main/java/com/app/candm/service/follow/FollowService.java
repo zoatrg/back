@@ -19,6 +19,7 @@ import java.util.List;
 public class FollowService {
     private final FollowDAO followDAO;
 
+//    팔로워 목록
     public FollowWithPagingDTO list(Long id, int page){
         FollowWithPagingDTO followWithPagingDTO = new FollowWithPagingDTO();
         Criteria criteria = new Criteria(page, followDAO.findTotal(id));

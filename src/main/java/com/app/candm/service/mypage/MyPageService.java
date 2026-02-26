@@ -1,13 +1,12 @@
 package com.app.candm.service.mypage;
 
 import com.app.candm.common.enumeration.FileContentType;
-import com.app.candm.domain.MemberActivityFileVO;
-import com.app.candm.domain.MemberActivityVO;
-import com.app.candm.domain.MemberCareerVO;
-import com.app.candm.domain.MemberVO;
+import com.app.candm.domain.*;
 import com.app.candm.dto.FileDTO;
 import com.app.candm.dto.member.MemberDTO;
+import com.app.candm.dto.member.MemberFileDTO;
 import com.app.candm.dto.mypage.*;
+import com.app.candm.repository.member.MemberFileDAO;
 import com.app.candm.repository.mypage.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,8 +33,9 @@ public class MyPageService {
     private final MemberActivityDAO memberActivityDAO;
     private final FileDAO fileDAO;
     private final MemberActivityFileDAO memberActivityFileDAO;
+    private final MemberFileDAO memberFileDAO;
 
-//    경력 등록
+    //    경력 등록
     public void regist(MemberCareerDTO memberCareerDTO){
         memberCareerDAO.save(memberCareerDTO.toMemberCareerVO());
     }
@@ -191,5 +191,45 @@ public class MyPageService {
 
         memberActivityDAO.delete(id);
     }
+
+//    ============================================ 프로필 등록 =========================================================
+
+    public void profileRegist(Long memberId, MultipartFile multipartFile ){
+        String rootPath = "C:/file/";
+        String todayPath = getTodayPath();
+        String path = rootPath + todayPath;
+
+        FileDTO fileDTO = new FileDTO();
+        MemberFileDTO memberFileDTO = new MemberFileDTO();
+
+        UUID uuid = UUID.randomUUID();
+        fileDTO.setFilePath(todayPath);
+        fileDTO.setFileSize(String.valueOf(multipartFile.getSize()));
+        fileDTO.setFileOriginalName(multipartFile.getOriginalFilename());
+        fileDTO.setFileName(uuid.toString() + "_" + multipartFile.getOriginalFilename());
+        fileDTO.setFileContentType(multipartFile.getContentType().contains("image") ? FileContentType.IMAGE : FileContentType.OTHER);
+        fileDAO.save(fileDTO);
+
+//        memberFileDTO.setMemberId(memberDTO.getId());
+        memberFileDTO.setId(fileDTO.getId());
+        memberFileDTO.setMemberId(memberId);
+
+        memberFileDAO.save(memberFileDTO.toMemberFileVO());
+
+        File directory = new File(rootPath + "/" + fileDTO.getFilePath());
+        if(!directory.exists()){
+            directory.mkdirs();
+        }
+        try {
+            multipartFile.transferTo(new File(path, fileDTO.getFileName()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+//==============================================프로필 조회====================================================
+    public Optional<MemberFileDTO> findProfileByMemberId(Long id){
+        return memberFileDAO.findProfileByMemberId(id);
+    }
+
 
 }

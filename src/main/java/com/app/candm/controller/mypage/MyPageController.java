@@ -1,6 +1,7 @@
 package com.app.candm.controller.mypage;
 
 import com.app.candm.dto.member.MemberDTO;
+import com.app.candm.dto.member.MemberFileDTO;
 import com.app.candm.dto.mypage.*;
 import com.app.candm.service.mypage.MyPageService;
 import jakarta.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -107,4 +109,22 @@ public class MyPageController {
     public void deleteActivity(@PathVariable Long id){
         myPageService.deleteActivity(id);
     }
+
+//=================================================프로필 등록=================================
+    @PostMapping("profile/regist")
+    @ResponseBody
+    public void profileRegist(Long memberId,@RequestParam(value = "multipartFile", required = false) MultipartFile file){
+        myPageService.profileRegist(memberId, file);
+    }
+
+    @GetMapping("profile/{id}")
+    @ResponseBody
+    public Optional<MemberFileDTO> profileView(@PathVariable Long id){
+
+        log.info("id: {}",id);
+        return myPageService.findProfileByMemberId(id);
+    }
+
+
+
 }
