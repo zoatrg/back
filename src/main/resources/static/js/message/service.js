@@ -10,14 +10,9 @@ const messageService = (() => {
             body: JSON.stringify(message)
         })
     }
-    const selectMessageList = async (messageList) =>{
-        await fetch('/message/list',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(messageList)
-        })
+    const selectMessageList = async (memberId) => {
+        const response = await fetch(`/message/list?memberId=${memberId}`);
+        return await response.json();
     }
 
     return {sendMessage:sendMessage,
