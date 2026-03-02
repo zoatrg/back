@@ -54,7 +54,7 @@ public class MemberController {
 //    카카오 추가정보 입력으로 이동
     @GetMapping("kakao-join")
     public String GotoKakaoJoinForm(){
-        return "/member/kakao-join";
+        return "member/kakao-join";
     }
 
     @PostMapping("kakao-join")
