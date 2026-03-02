@@ -29,5 +29,5 @@ loginButton.addEventListener("click", (e) => {
 
 const kakaoButton = document.querySelector(".fourth-button");
 kakaoButton.addEventListener("click", (e) =>{
-    location.href = "https://kauth.kakao.com/oauth/authorize?client_id=6453f1e570d210ce0a85c1a67c2f5c3f&redirect_uri=http://3.34.50.211:10000/kakao/login&response_type=code";
+    location.href = "https://kauth.kakao.com/oauth/authorize?client_id=d37fb34dd78b7ddb6d413614729e0648&redirect_uri=http://3.34.50.211:10000/kakao/login&response_type=code";
 });
