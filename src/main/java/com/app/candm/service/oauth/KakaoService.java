@@ -66,7 +66,19 @@ public class KakaoService {
             bufferedWriter.close();
 
 //            200: 요청 성공
-            if(connection.getResponseCode() == 200){
+            int responseCode = connection.getResponseCode();
+            log.info("카카오 토큰 요청 응답 코드: {}", responseCode);
+            if(responseCode != 200){
+                BufferedReader errorReader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+                String errorLine;
+                StringBuilder errorResult = new StringBuilder();
+                while((errorLine = errorReader.readLine()) != null){
+                    errorResult.append(errorLine);
+                }
+                errorReader.close();
+                log.error("카카오 토큰 요청 실패: {}", errorResult.toString());
+            }
+            if(responseCode == 200){
 //                응답 데이터를 불러올 준비를 한다.
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 String line = null;
