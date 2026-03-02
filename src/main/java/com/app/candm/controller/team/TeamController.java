@@ -30,7 +30,7 @@ public class TeamController {
         model.addAttribute("teamDTO", dto);
         log.info("teamDTO = {}.................", dto);
 
-        return "/team/team-regist/team-regist";
+        return "team/team-regist/team-regist";
 
     }
     @PostMapping("/team-regist")
@@ -51,7 +51,7 @@ public class TeamController {
         List<TeamDTO> teams = memberId != null ? teamRegistrationService.getListByMember(memberId) : List.of();
         model.addAttribute("teams", teams);
         model.addAttribute("memberId", memberId);
-        return "/team/team-list/team-list";
+        return "team/team-list/team-list";
     }
 
 

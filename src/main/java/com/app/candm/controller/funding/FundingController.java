@@ -35,7 +35,7 @@ public class FundingController {
         model.addAttribute("fundingDTO", dto);
         log.info("fundingDTO = {}.................", dto);
 
-        return "/funding/funding-regist-page";
+        return "funding/funding-regist-page";
 
     }
 
@@ -59,7 +59,7 @@ public class FundingController {
         List<FundingDTO> fundingList = teamId != null ? fundingService.getListByTeam(teamId) : List.of();
         model.addAttribute("fundingList", fundingList);
         model.addAttribute("teamId", teamId);
-        return "/funding/funding-list-page";
+        return "funding/funding-list-page";
     }
     /*====================파일============================*/
     @PostMapping("write")

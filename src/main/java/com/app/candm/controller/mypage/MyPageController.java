@@ -33,7 +33,7 @@ public class MyPageController {
         }
         model.addAttribute("member", memberDTO);
         model.addAttribute("isOwner", true);
-        return "/mypage/mypage";
+        return "mypage/mypage";
     }
 
 //===================================================경력====================================================================
