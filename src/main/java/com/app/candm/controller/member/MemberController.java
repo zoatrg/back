@@ -5,7 +5,9 @@ import com.app.candm.service.member.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -17,6 +19,12 @@ public class MemberController {
     private final MemberService memberService;
 //    session 서버에 저장
     private final HttpSession session;
+
+    @Value("${kakao.client-id}")
+    private String kakaoClientId;
+
+    @Value("${kakao.redirect-uri}")
+    private String kakaoRedirectUri;
 
 //    회원가입 페이지 이동
     @GetMapping("join")
@@ -38,8 +46,9 @@ public class MemberController {
 
 //    로그인 화면으로 이동
     @GetMapping("login")
-    public String goToLoginForm()
-    {
+    public String goToLoginForm(Model model) {
+        model.addAttribute("kakaoClientId", kakaoClientId);
+        model.addAttribute("kakaoRedirectUri", kakaoRedirectUri);
         return "member/login";
     }
 

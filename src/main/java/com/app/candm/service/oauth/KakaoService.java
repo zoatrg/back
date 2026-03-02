@@ -10,6 +10,7 @@ import com.google.gson.JsonParser;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -24,6 +25,15 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class KakaoService {
     private final MemberDAO memberDAO;
+
+    @Value("${kakao.client-id}")
+    private String kakaoClientId;
+
+    @Value("${kakao.client-secret}")
+    private String kakaoClientSecret;
+
+    @Value("${kakao.redirect-uri}")
+    private String kakaoRedirectUri;
 
     //    화면(login/event.js)에서 REST API KEY를 전달하여 code를 받는다.
 //    redirect_uri는 /kakao/login이고, 이 컨트롤러에서 아래의 메소드를 사용한다.
@@ -49,9 +59,9 @@ public class KakaoService {
 
 //            파라미터를 구성한다(ref. kakao rest api login documentation)
             stringBuilder.append("grant_type=authorization_code");
-            stringBuilder.append("&client_id=d37fb34dd78b7ddb6d413614729e0648");
-            stringBuilder.append("&redirect_uri=http://3.34.50.211:10000/kakao/login");
-            stringBuilder.append("&client_secret=5TttbvGJ5qwHtMA7jmegSC9c435jfEka");
+            stringBuilder.append("&client_id=").append(kakaoClientId);
+            stringBuilder.append("&redirect_uri=").append(kakaoRedirectUri);
+            stringBuilder.append("&client_secret=").append(kakaoClientSecret);
             stringBuilder.append("&code=").append(code);
 
 //            등록한 URI로 파라미터를 전송하기 위해서는

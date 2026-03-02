@@ -10,6 +10,7 @@ import com.app.candm.repository.member.MemberFileDAO;
 import com.app.candm.repository.mypage.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,6 +30,9 @@ import java.util.UUID;
 @Slf4j
 public class MyPageService {
     private final MemberCareerDAO memberCareerDAO;
+
+    @Value("${file.upload-path}")
+    private String uploadPath;
     private final MemberEducationDAO memberEducationDAO;
     private final MemberActivityDAO memberActivityDAO;
     private final FileDAO fileDAO;
@@ -97,7 +101,7 @@ public class MyPageService {
 //    활동 등록(이미지 포함)
     public void regist(MemberActivityDTO memberActivityDTO, ArrayList<MultipartFile> multipartFiles){
         log.info("input : {},,,,,,,,,,,,,,", memberActivityDTO);
-        String rootPath = "C:/file/";
+        String rootPath = uploadPath;
         String todayPath = getTodayPath();
         String path = rootPath + todayPath;
 
@@ -167,7 +171,7 @@ public class MyPageService {
     public void deleteActivity(Long id){
 //        log.info("{들어옴1}");
 //        memberActivityFileDAO.findAllByMemberId(id).forEach(memberActivityFileDTO -> {
-//            File file = new File("C:/file/" + memberActivityFileDTO.getFilePath(), memberActivityFileDTO.getFileName());
+//            File file = new File(uploadPath + memberActivityFileDTO.getFilePath(), memberActivityFileDTO.getFileName());
 //            if(file.exists()){
 //                log.info("{들어옴2}");
 //                file.delete();
@@ -180,7 +184,7 @@ public class MyPageService {
 //        memberActivityDAO.delete(id);
         List<MemberActivityFileDTO> files = memberActivityFileDAO.findAllByMemberId(id);
         files.forEach(memberActivityFileDTO -> {
-            File file = new File("C:/file/" + memberActivityFileDTO.getFilePath(), memberActivityFileDTO.getFileName());
+            File file = new File(uploadPath + memberActivityFileDTO.getFilePath(), memberActivityFileDTO.getFileName());
                 if(file.exists()){
                     file.delete();
                     }
@@ -195,7 +199,7 @@ public class MyPageService {
 //    ============================================ 프로필 등록 =========================================================
 
     public void profileRegist(Long memberId, MultipartFile multipartFile ){
-        String rootPath = "C:/file/";
+        String rootPath = uploadPath;
         String todayPath = getTodayPath();
         String path = rootPath + todayPath;
 

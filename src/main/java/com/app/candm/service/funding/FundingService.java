@@ -10,6 +10,7 @@ import com.app.candm.repository.funding.FundingDAO;
 import com.app.candm.repository.funding.FundingFileDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,6 +31,9 @@ public class FundingService {
     private final FundingDAO fundingDAO;
     private final FileDAO fileDAO;
     private final FundingFileDAO fundingFileDAO;
+
+    @Value("${file.upload-path}")
+    private String uploadPath;
 
     // 펀딩 신규 등록
     public void register(FundingDTO fundingDTO) {
@@ -58,7 +62,7 @@ public class FundingService {
 
     // 파일
     public void write(FundingDTO fundingDTO, ArrayList<MultipartFile> multipartFiles) {
-        String rootPath = "C:/file/";
+        String rootPath = uploadPath;
         String todayPath = getTodayPath();
         String path = rootPath + todayPath;
 
